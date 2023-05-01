@@ -4,7 +4,7 @@
 
 terraform {
   backend "local" {}
-  required_version = "1.2.2"
+  required_version = "~>1.4.0"
   required_providers {
     docker = {
       source = "kreuzwerker/docker"
@@ -17,14 +17,14 @@ terraform {
 # -----------------------------------------------------------------------------
 
 # Docker Desktop on Windows
-provider "docker" {
-  host = "npipe:////./pipe/dockerDesktopLinuxEngine"
-}
+# provider "docker" {
+#   host = "npipe:////./pipe/dockerDesktopLinuxEngine"
+# }
 
 # Docker on Unix
-#provider "docker" {
-#  host = "unix:///var/run/docker.sock"
-#}
+provider "docker" {
+  host = "unix:///var/run/docker.sock"
+}
 
 # -----------------------------------------------------------------------------
 # LOCALS
@@ -45,7 +45,7 @@ module "docker_graylog" {
 
   /* DEFAULT VARS */
 
-  keep_locally = true
+  keep_locally = false
   network_name = "terraform-docker-graylog"
   restart      = "always"
 

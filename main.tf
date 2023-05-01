@@ -39,7 +39,7 @@ resource "docker_container" "mongo" {
   env = var.mongo_env_vars
 
   restart = var.restart
-  image   = docker_image.mongo.latest
+  image   = docker_image.mongo.image_id
 
   dynamic "ports" {
     for_each = var.mongo_ports
@@ -91,7 +91,7 @@ resource "docker_container" "graylog" {
   env = var.graylog_env_vars
 
   restart = var.restart
-  image   = docker_image.graylog.latest
+  image   = docker_image.graylog.image_id
 
   networks_advanced {
     name = docker_network.this.name
@@ -143,7 +143,7 @@ resource "docker_container" "elasticsearch" {
   env = var.elasticsearch_env_vars
 
   restart = var.restart
-  image   = docker_image.elasticsearch.latest
+  image   = docker_image.elasticsearch.image_id
 
   networks_advanced {
     name = docker_network.this.name
